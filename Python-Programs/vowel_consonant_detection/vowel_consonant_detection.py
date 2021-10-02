@@ -17,5 +17,5 @@ for word in string:
         count = string.count(word)
         consonant_counts[word] = count
 
-print(f'Vowel Count : {vowel_counts}\n')
+print(f'\nVowel Count : {vowel_counts}')
 print(f'Consonant Count : {consonant_counts}')
