@@ -261,7 +261,7 @@ def Testing(cidr,extracidr,first_byte,second_byte,third_byte,fourth_byte,type):
 
             if int(cidr)==32:
                 blocksize=256-lsm
-                print("Blocksize of the Network is ",blocksize)
+                print("Network's Blocksize is ",blocksize)
                 while  not (fourth_byte==256):
                     print(first_byte,".",second_byte,".",third_byte,".",fourth_byte, end="\t\t\t\n")
                     fourth_byte+=int(blocksize)                 
