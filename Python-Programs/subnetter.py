@@ -12,6 +12,7 @@ def cont():
        
 
 def switch():
+
     print("-"*40)
     print("1) Check Class of IPV4 Address")
     print("2) Exit")
@@ -19,6 +20,8 @@ def switch():
     option = int(input("your option : "))
     if  option == 1:
         data = input("Enter the ip address to check its class:")
+        data = input("Enter the ip address find subnets")
+
         octet=data.split(".")
         (first_byte,second_byte,third_byte,fourth_byte)=(int(octet[0]),int(octet[1]),int(octet[2]),int(octet[3]))
         if len(str(first_byte))>3 :
@@ -122,6 +125,7 @@ def switch():
                 print("Invalid IP")
                 cont()
         
+
     elif option == 2:
                 print("Exit")
      
@@ -152,6 +156,33 @@ def subnet(octet,clas):
           classA(octet,cidr,clas)
   elif(inputchar=="N" or inputchar=="n"):
        sys.exit()
+
+     
+
+def subnet(octet,clas):
+
+    clas=clas.upper()
+    print("Enter cidr value")
+    cidr=input()
+    if((clas=="A" and int(cidr)<8) or int(cidr)>33):
+        print("Invalid CIDR for class",clas," IP")
+        cont()
+    elif((clas=="B" and int(cidr)<16) or int(cidr)>33):
+        print("Invalid CIDR for class",clas," IP")
+        cont()
+    elif((clas=="C" and int(cidr)<24) or int(cidr)>33):
+        print("Invalid CIDR for class",clas," IP")
+        cont()
+    elif(clas=="D"):
+        print("Since it is a multicast address so you can't use this ip")
+          #classD(octet,cidr)
+    elif(clas=="E"):
+        print("Since it is a loopback address so you can't use")
+          #classE(octet,cidr)
+    else:
+          classA(octet,cidr,clas)
+  
+
 
 def classA(octet,cidr,type):
 
@@ -265,8 +296,11 @@ def Testing(cidr,extracidr,first_byte,second_byte,third_byte,fourth_byte,type):
                 while  not (fourth_byte==256):
                     print(first_byte,".",second_byte,".",third_byte,".",fourth_byte, end="\t\t\t\n")
                     fourth_byte+=int(blocksize)                 
-                                       
+
+                    
     if(type=="B" and int(cidr)>16):
+
+    if(type=="B" and int(cidr)>=16):
         ssm=255
         if(ssm==255 and int(cidr)>16):
                 for bits in range(0,extracidr):
@@ -276,7 +310,15 @@ def Testing(cidr,extracidr,first_byte,second_byte,third_byte,fourth_byte,type):
                 for bits in range(0,extracidr-8):
                     if True:
                         lsm=lsm+int(math.pow(2,n-bits))
-    
+
+        if int(cidr)==16:
+            blocksize=256-lsm
+            print(first_byte,".",second_byte,".",third_byte,".",fourth_byte, end="")
+            fourth_byte+=int(blocksize)
+            third_byte+=int(blocksize)                   
+            print("\t\t\t\t\t",first_byte,".",second_byte,".",third_byte-1,".",fourth_byte-1)
+
+
 
         if int(cidr) in range(17,25):
           if(tsm>0 and tsm<=255 and lsm==0):
@@ -311,7 +353,6 @@ def Testing(cidr,extracidr,first_byte,second_byte,third_byte,fourth_byte,type):
                   
                     #print("\t",first_byte,".",second_byte,".",third_byte,".",fourth_byte-1)
 
-    
         if int(cidr)==31:
             blocksize=256-lsm
             print("Blocksize of the Network is ",blocksize)
@@ -327,8 +368,12 @@ def Testing(cidr,extracidr,first_byte,second_byte,third_byte,fourth_byte,type):
                     print(first_byte,".",second_byte,".",third_byte,".",fourth_byte, end="\t\t\t\n")
                     fourth_byte+=int(blocksize)  
         
+
     if(type=="C" and int(cidr)>24):
         print("just check it")
+
+    if(type=="C" and int(cidr)>=24):
+
         ssm=255
         tsm=255        
         if(tsm==255 and int(cidr)>24):
@@ -345,6 +390,14 @@ def Testing(cidr,extracidr,first_byte,second_byte,third_byte,fourth_byte,type):
                     fourth_byte+=int(blocksize)
                     print("\t",first_byte,".",second_byte,".",third_byte,".",fourth_byte-2, end="")
                     print("\t",first_byte,".",second_byte,".",third_byte,".",fourth_byte-1)
+
+        if int(cidr)==24:
+            print(first_byte,".",second_byte,".",third_byte,".",fourth_byte, end="\t\t\t")
+            print("\t",first_byte,".",second_byte,".",third_byte,".",fourth_byte+1, end="  ------")      
+            fourth_byte+=int(256)
+            print("\t",first_byte,".",second_byte,".",third_byte,".",fourth_byte-2, end="")       
+            print(first_byte,".",second_byte,".",third_byte,".",fourth_byte-1, end="\t\t\t\n")    
+
         if int(cidr)==31:
             blocksize=256-lsm
             print("Blocksize of the Network is ",blocksize)
