@@ -5,7 +5,7 @@ string = input("Please insert a string : ").lower()
 vowel_counts = {}
 consonant_counts = {}
 
-# Define vowels
+# Define vowels and consonants
 vowels = ['a', 'e', 'i', 'o', 'u']
 consonants = ['b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'y', 'z']
 
