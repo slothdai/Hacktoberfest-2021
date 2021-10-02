@@ -3,7 +3,7 @@ public class PrimsAlgorithm
 {
 	public static boolean added[];
 	public static ArrayList<Edge> mst;
-    public static IndexedPriorityQueue<Integer> pq;
+    	public static IndexedPriorityQueue<Integer> pq;
 	public static int cost[];
 	public static int fromVertex[];
 	public static void primsMST(WeightedGraph G)
