@@ -1,8 +1,7 @@
 from scapy.all import ARP, Ether, srp
 
-# target_ip = "192.168.1.0/24"
-target_ip = input("Enter Target ip in formT A.B.C.D/Cidr")
-# IP Address for the destination
+#target_ip = "192.168.1.0/24"
+target_ip = input("Enter Target ip in formT A.B.C.D/Cidr ")
 # create ARP packet
 arp = ARP(pdst=target_ip)
 # create the Ether broadcast packet
