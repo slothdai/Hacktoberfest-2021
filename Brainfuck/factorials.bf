@@ -1,3 +1,4 @@
+#This program generates all the factorials starting from 1
 >>>>++>+[
     [
         >[>>]<[>+>]<<[>->>+<<<-]>+[
