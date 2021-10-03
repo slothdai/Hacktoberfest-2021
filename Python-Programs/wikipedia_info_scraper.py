@@ -1,6 +1,6 @@
 import wikipedia
 import cgi
-def que():
+def main_function():
     query = input('Write the title of the information you want to know = ')
     info = wikipedia.summary(query, 2)
     print(info)
@@ -18,4 +18,4 @@ def que():
         print("Invalid choice")
 
 while True:
-    que()
+    main_function()
